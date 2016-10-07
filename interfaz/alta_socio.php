@@ -68,7 +68,9 @@
         </div>
         <button type="submit" class="btn btn-default">Ver soci@</button>
       </form>
-      <a id="envio" class="navbar-brand" >Envio correos</a>
+     <a  class="navbar-brand" href="/persistencia/listar_socios.php" >Listar soci@s</a>
+ 	
+	 <a id="envio" class="navbar-brand" style="cursor: pointer; cursor: hand;">Envio correos</a>
     </div>
 		
   </div>
@@ -128,7 +130,7 @@ else $respuesta = "";
 	</br>
 	Tlf:  <input name="tlf">
 	</br>
-	DNI:  <input name="DNI">
+	DNI:  <input name="DNI"> 
 	</br>
 	Categoria del socio:  <input name="categoria">
 	</br>

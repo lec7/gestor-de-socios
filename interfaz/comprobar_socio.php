@@ -68,7 +68,9 @@
         </div>
         <button type="submit" class="btn btn-default">Ver soci@</button>
       </form>
-      <a id="envio" class="navbar-brand" >Envio correos</a>
+      <a  class="navbar-brand" href="/persistencia/listar_socios.php" >Listar soci@s</a>
+ 	
+	 <a id="envio" class="navbar-brand" style="cursor: pointer; cursor: hand;">Envio correos</a>
     </div>
 		
   </div>
@@ -208,7 +210,7 @@ $str = "";
 	$str = "";
 	//si dif >=0 es que aun tiene dias por delante
 	
-	if($dif >= 0) {
+	if($dif > 0) {
 	
 		$i = 0;
 		//$fecha =  $y . "-" . $m;
@@ -219,7 +221,7 @@ $str = "";
 		$y = $y_i;
 		$str = "['". $fecha_actual ;
 		
-		while($i < $dif){
+		while($i <= $dif){
 			
 		
 		//comprobamos cambios de mes y de año
@@ -283,8 +285,7 @@ $(document).ready(function()
       $('#basic').calendar(
       {
         day_first: 1,
-	unavailable:". $str . ",
-	available: ['" .$fecha_actual ."']
+	unavailable:". $str . "
       });
 
 });

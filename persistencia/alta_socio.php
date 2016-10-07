@@ -16,6 +16,7 @@ if ($conn->connect_error) {
 }
 
 //Comprobamos si ya hay un socio con ese dni
+$_GET["DNI"] = explode("-" , $_GET["DNI"]);
 $sql = "SELECT * FROM Socios WHERE DNI = '" . $_GET["DNI"] ."'";
 $result = $conn->query($sql);
 
@@ -62,10 +63,10 @@ else {printf("Errormessage: %s\n", $conn->error);
 			// Si cualquier línea es más larga de 70 caracteres, se debería 	usar wordwrap()
 			$mensaje = wordwrap($mensaje, 70, "\r\n");
 	
-			$email = $_GET["email"];
+			//$email = $_GET["email"];
 			// Enviarlo
-			$bool=mail($email, 'Alta en Labotario de Fabricacion', $mensaje);
-			
+			//$bool=mail($email, 'Alta en Labotario de Fabricacion', $mensaje);
+			//echo $nombre;
 			header('Location: /interfaz/alta_socio.php?respuesta=Insertado');
 			}
 			else{

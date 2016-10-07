@@ -61,6 +61,7 @@ El Equipo Laboratorio de Fabricación.";
      
 
 	$nombre = $obj->nombre;
+	$nombre = htmlentities($nombre);
 	// El mensaje
 	$mensaje = "¡Hola ".$nombre."! \r\n
 
