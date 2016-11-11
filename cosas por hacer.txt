@@ -1,0 +1,6 @@
+-Editar socio mostrar datos
+-No mostrar ningun DNI en formularios
+-Listar socios mostrar activo/no activo
+
+-Editar socio añadir/quitar grupos
+-Listar socios mostrar grupos/maquinas/talleres

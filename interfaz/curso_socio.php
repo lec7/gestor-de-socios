@@ -64,7 +64,7 @@
       </ul>
       <form class="navbar-form navbar-left" role="search" action="/control/comprobar_socio.php">
         <div class="form-group">
-          <input name="DNI" type="text" class="form-control" placeholder="DNI soci@">
+          <input name="DNI" type="text" class="form-control" placeholder="DNI soci@" autocomplete="off">
         </div>
         <button type="submit" class="btn btn-default">Ver soci@</button>
       </form>

@@ -64,7 +64,7 @@
       </ul>
       <form class="navbar-form navbar-left" role="search" action="/control/comprobar_socio.php">
         <div class="form-group">
-          <input name="DNI" type="text" class="form-control" placeholder="DNI soci@">
+          <input name="DNI" type="text" class="form-control" placeholder="DNI soci@" autocomplete='off'>
         </div>
         <button type="submit" class="btn btn-default">Ver soci@</button>
       </form>
@@ -99,26 +99,56 @@ else $respuesta = "";
 	if($respuesta == "No_Numerico"){
 	echo"<FONT COLOR='red'>El tlf no ha sido insertado correctamente</FONT> <br> <br> ";
 	} 
- 	else if($respuesta == "Existe_DNI")
-	 echo"	<form  method='get' action='/control/editar_socio.php'>
-	<h3>Inserte los campos que desea editar de soci@ con DNI: '".	 $_GET	["DNI"]."'</h3> 
-	<p style='font-size:15px'>(Los campos que no desee editar dejelos en blanco).</p>
-	 
-	Nombre y apellidos: <input name='nombre' value=''>
-	</br>
-	E-mail:  <input name='email' value=''>
-	</br>
-	Tlf:  <input name='tlf'>
-	</br>
-	Categoria del socio:  <input name='categoria' value=''>
-	</br>
-	Comentario:  <textarea name='comentario' rows='5' cols='30'></textarea>
-	</br>
-	<input type='hidden' name='DNI' value='" . $_GET["DNI"] . "'>
-	
-    <button type='submit'>Editar</button>
-</form> ";
+ 	else if($respuesta == "Existe_DNI"){
+		//cogemos los valores del socio, para mostrarlos y que el usuario pueda ver los que ya tiene antes de editarlos
+		
+		if ( isset($_SESSION["Resultado"]) )
+		{
 
+		$array = $_SESSION["Resultado"];
+		
+		$array = json_decode($array);
+		
+		
+		foreach($array as $obj){
+		     
+			$numero = $obj->numero;
+			$nombre = $obj->nombre;
+			$email = $obj->email;
+			$tlf = $obj->tlf;
+			$DNI = $obj->DNI;
+			$categoria = $obj->categoria;
+			$fecha_alta = $obj->fecha_alta;
+			$fecha_inicio = $obj->fecha_inicio;
+			$fecha_fin = $obj->fecha_fin;
+			$comentario = $obj->comentario;
+
+			}
+		
+	
+			
+
+		
+		 echo"	<form  method='get' action='/control/editar_socio.php'>
+		<h3>Inserte los campos que desea editar de soci@ con DNI: '".	 $_GET	["DNI"]."'</h3> 
+		<p style='font-size:15px'>(Los campos que no desee editar dejelos en blanco).</p>
+		 
+		Nombre y apellidos: <input name='nombre' value='".$nombre."' autocomplete='off'>
+		</br>
+		E-mail:  <input name='email' value='".$email."' autocomplete='off'>
+		</br>
+		Tlf:  <input name='tlf' value='".$tlf."' autocomplete='off'>
+		</br>
+		Categoria del socio:  <input name='categoria' value='".$categoria."' >
+		</br>
+		Comentario:  <textarea name='comentario'  rows='5' cols='30'>".$comentario."</textarea>
+		</br>
+		<input type='hidden' name='DNI' value='".$_GET["DNI"]."'>
+	
+	    <button type='submit'>Editar</button>
+	</form> ";
+	}//cierre isset($_SESSION["Resultado"]) 
+ } //cierre $respuesta == "Existe_DNI"
 	else if($respuesta == "Insertado"){
 		echo"<FONT COLOR='green'>Soci@ editado correctamente</FONT> <br> <br> ";
 	echo "<meta http-equiv='refresh' content='5;url=./main.html'>";
@@ -137,7 +167,7 @@ else $respuesta = "";
 	<fieldset>	
 	<h3>Inserte el DNI de soci@ que desea editar</h3>
 	
-	DNI:  <input name="DNI">
+	DNI:  <input name="DNI" autocomplete='off'>
 	</br>
 	
 	

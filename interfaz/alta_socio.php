@@ -64,7 +64,7 @@
       </ul>
       <form class="navbar-form navbar-left" role="search" action="/control/comprobar_socio.php">
         <div class="form-group">
-          <input name="DNI" type="text" class="form-control" placeholder="DNI soci@">
+          <input name="DNI" type="text" class="form-control" placeholder="DNI soci@" autocomplete="off">
         </div>
         <button type="submit" class="btn btn-default">Ver soci@</button>
       </form>
@@ -124,15 +124,15 @@ else $respuesta = "";
 <form  method="get" action="/control/alta_socio.php">
 	<fieldset>	
 	<h3>Alta de socio</h3>
-	Nombre y apellidos: <input name="nombre">
+	Nombre y apellidos: <input name="nombre" autocomplete="off">
 	</br>
-	E-mail:  <input name="email">
+	E-mail:  <input name="email" autocomplete="off">
 	</br>
-	Tlf:  <input name="tlf">
+	Tlf:  <input name="tlf" autocomplete="off">
 	</br>
-	DNI:  <input name="DNI"> 
+	DNI:  <input name="DNI" autocomplete="off"> 
 	</br>
-	Categoria del socio:  <input name="categoria">
+	Categoria del socio:  <input name="categoria" >
 	</br>
 	Comentario:  <textarea name='comentario' rows='5' cols='30'></textarea>
 	</br>

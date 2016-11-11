@@ -64,7 +64,7 @@
       </ul>
       <form class="navbar-form navbar-left" role="search" action="/control/comprobar_socio.php">
         <div class="form-group">
-          <input name="DNI" type="text" class="form-control" placeholder="DNI soci@">
+          <input name="DNI" type="text" class="form-control" placeholder="DNI soci@" autocomplete="off">
         </div>
         <button type="submit" class="btn btn-default">Ver soci@</button>
       </form>
@@ -119,7 +119,7 @@ else $respuesta = "";
 	<fieldset>
 	<h3>Inserte el DNI de soci@ que desea actualizar pago</h3>
 	
-	DNI:  <input name="DNI"> </br>
+	DNI:  <input name="DNI" autocomplete="off"> </br>
 	Indique cuantos meses: <input list="meses" name="meses">
 				<datalist id="meses">
   				  <option value="1">1</option>

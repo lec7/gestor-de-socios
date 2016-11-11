@@ -64,7 +64,7 @@
       </ul>
       <form class="navbar-form navbar-left" role="search" action="/control/comprobar_socio.php">
         <div class="form-group">
-          <input name="DNI" type="text" class="form-control" placeholder="DNI soci@">
+          <input name="DNI" type="text" class="form-control" placeholder="DNI soci@" autocomplete='off'>
         </div>
         <button type="submit" class="btn btn-default">Ver soci@</button>
       </form>
@@ -88,6 +88,19 @@ else {
 </script>
 <?php
 session_start();
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "labotario_de_fabricacion";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
 if ( isset($_SESSION["Resultado"]) )
 		{
 		
@@ -98,6 +111,7 @@ if ( isset($_SESSION["Resultado"]) )
 			  <thead>
 			    <tr>
 			      	<th>#</th>
+				<th>Activo</th>
 			      	<th>Nombre</th>
 			      	<th>Email</th>
 			      	<th>Tlf</th>
@@ -107,6 +121,8 @@ if ( isset($_SESSION["Resultado"]) )
 				<th>Fecha de Inicio Periodo</th>
 				<th>Fecha de Fin Periodo</th>
 				<th>Comentario</th>
+				<th>Grupos</th>
+				<th>Talleres</th>
 			    </tr>
 			  </thead>
 			  <tbody>";
@@ -116,6 +132,22 @@ if ( isset($_SESSION["Resultado"]) )
 			echo "<td>";
 			echo $numero = $obj->numero;
 			echo "</td>";
+			echo "<td>";
+
+				$activo;
+				$fecha_actual = date('Y-m-d');
+				$fecha_fin = $obj->fecha_fin;
+				$fecha_actual1 = new DateTime($fecha_actual);
+				$fecha_fin1 = new DateTime($fecha_fin);
+	
+				if($fecha_actual1 <= $fecha_fin1) $activo = 1;
+				else $activo = 0;
+				
+				if( $activo == 1) 
+					echo "<img src='assets/img/ok.png' height='30' width='30'>";
+				else 	echo "<img src='assets/img/no.png' height='30' width='30'>";
+
+			echo "</td>";  
 			echo "<td>";
 			echo $nombre = $obj->nombre;
 			echo "</td>";
@@ -143,8 +175,63 @@ if ( isset($_SESSION["Resultado"]) )
 			echo "<td>";
 			echo $comentario = $obj->comentario;
 			echo "</td>";
-		     echo "</tr>";
+			
+			//mostramos grupos			
+			$sql3 = "SELECT * FROM Grupo_socio WHERE socio = '" . $DNI."'";
+		$result3 = $conn->query($sql3);
+		
+		$rows3 = array();
+		while($r = mysqli_fetch_assoc($result3)) {
+		    $rows3[] = $r;
+		}
+		$array = json_encode($rows3);	
+		
+		
+		$array = json_decode($array);
+		$nombres;
+		$cont = 0;
+		foreach($array as $obj){
+		     
+			$nombres[$cont] = $obj->grupo_trabajo;
+			$cont = $cont + 1;
 			}
+				echo "<td>";
+				$i = 0;
+				while($i < $cont){
+				echo $nombres[$i] .",  ";
+				$i = $i + 1;
+				}
+			echo "</td>";
+
+			
+				//mostramos talleres			
+			$sql3 = "SELECT * FROM Taller_socio WHERE socio = '" . $DNI."'";
+		$result3 = $conn->query($sql3);
+		
+		$rows3 = array();
+		while($r = mysqli_fetch_assoc($result3)) {
+		    $rows3[] = $r;
+		}
+		$array = json_encode($rows3);	
+		
+		
+		$array = json_decode($array);
+		$nombres;
+		$cont = 0;
+		foreach($array as $obj){
+		     
+			$nombres[$cont] = $obj->taller;
+			$cont = $cont + 1;
+			}
+				echo "<td>";
+				$i = 0;
+				while($i < $cont){
+				echo $nombres[$i] .",  ";
+				$i = $i + 1;
+				}
+			echo "</td>";
+			
+			}//cierre foreach superior
 		
 		echo "</tbody>	</table> ";
 			//eliminar la session.

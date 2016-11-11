@@ -64,7 +64,7 @@
       </ul>
       <form class="navbar-form navbar-left" role="search" action="/control/comprobar_socio.php">
         <div class="form-group">
-          <input name="DNI" type="text" class="form-control" placeholder="DNI soci@">
+          <input name="DNI" type="text" class="form-control" placeholder="DNI soci@" autocomplete='off'>
         </div>
         <button type="submit" class="btn btn-default">Ver soci@</button>
       </form>
@@ -112,9 +112,9 @@ else $respuesta = "";
 <form  method="get" action="/persistencia/nuevo_grupo.php">
 	<fieldset>	
 	<h3>Creacion de nuevo grupo de trabajo</h3>
-	Nombre del grupo: <input name="nombre">
+	Nombre del grupo: <input name="nombre" autocomplete='off'>
 	</br>
-	Descripcion:  <input name="descripcion" >
+	Descripcion:  <input name="descripcion" autocomplete='off'>
 	</br>	
 	
     <button type="submit">Crear</button>

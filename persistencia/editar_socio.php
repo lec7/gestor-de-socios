@@ -35,8 +35,8 @@ if($_GET["nombre"]!= "") $sqlUpdate = $sqlUpdate . "nombre='" . $_GET		["nombre"
 //para quitar la ultima "," coma, sobrante. 
 $sqlUpdate = trim($sqlUpdate, ',');
 
-$sqlUpdate = $sqlUpdate . " WHERE DNI = '" .$_GET["DNI"] . "'";
-
+ $sqlUpdate = $sqlUpdate . " WHERE DNI = '" .$_GET["DNI"] . "'";
+ 
 
 	
 		if ($conn->query($sqlUpdate) === TRUE) 
